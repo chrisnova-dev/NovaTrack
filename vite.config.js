@@ -4,9 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
-  // Ensure this is EXACTLY '/' for Vercel
-  base: '/', 
-  
   plugins: [
     react(),
     tailwindcss(),
@@ -14,9 +11,18 @@ export default defineConfig({
       globals: { Buffer: true, global: true, process: true },
     }),
   ],
+  base: "/", // ✅ Essential for Vercel
   build: {
     outDir: 'dist',
-    // This helps ensure the file names match what Vercel expects
-    assetsDir: 'assets', 
+    assetsDir: 'assets',
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        // This forces Vite to use simple names so Vercel doesn't get confused
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
+    }
   }
 });
