@@ -10,7 +10,6 @@ const AssetCardList = ({ assets }) => {
 
             <img
               src={asset.logo}
-              alt=""
               className="w-8 h-8 rounded-full"
             />
 
@@ -23,6 +22,7 @@ const AssetCardList = ({ assets }) => {
                 {asset.balance}
               </p>
             </div>
+
           </div>
 
           <div className="text-right">

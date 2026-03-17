@@ -1,18 +1,22 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react"; // Ensure react plugin is imported
+import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 export default defineConfig({
-  base: "/NovaTrack/",
-  plugins: [react(), tailwindcss()],
-  server: {
-    proxy: {
-      // Forwarding requests from /api-gecko to CoinGecko to bypass CORS
-      "/api-gecko": {
-        target: "https://api.coingecko.com/api/v3",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api-gecko/, ""),
-      },
-    },
-  },
+  // Ensure this is EXACTLY '/' for Vercel
+  base: '/', 
+  
+  plugins: [
+    react(),
+    tailwindcss(),
+    nodePolyfills({
+      globals: { Buffer: true, global: true, process: true },
+    }),
+  ],
+  build: {
+    outDir: 'dist',
+    // This helps ensure the file names match what Vercel expects
+    assetsDir: 'assets', 
+  }
 });

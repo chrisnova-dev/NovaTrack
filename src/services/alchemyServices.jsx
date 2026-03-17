@@ -1,6 +1,6 @@
 
 import { alchemy } from "../lib/alchemy"; 
-import { Network } from "alchemy-sdk"; // Keep this if you need Network names
+import { Network } from "alchemy-sdk";
 
 
 export const getPortfolioData = async (walletAddress) => {
