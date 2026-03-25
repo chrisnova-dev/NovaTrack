@@ -1,57 +1,96 @@
 import React from 'react';
 
-const getAvatarColor = (symbol) => {
-  const colors = [
-    'bg-blue-600', 'bg-purple-600', 'bg-pink-600', 
-    'bg-indigo-600', 'bg-cyan-600', 'bg-teal-600', 
-    'bg-orange-600', 'bg-emerald-600'
-  ];
-  const index = (symbol?.charCodeAt(0) || 0) % colors.length;
-  return colors[index];
-};
+export default function AssetTable({ assets, isConnected }) {
+  // If not connected, show the 5-line "System Offline" state
+  if (!isConnected) {
+    return (
+      <div className="relative w-full py-20 border border-white/5 flex flex-col items-center justify-center overflow-hidden">
+        {/* Five Demarcation Lines */}
+        <div className="absolute inset-0 flex flex-col justify-evenly px-10 opacity-10">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-px w-full bg-cyan-500" />
+          ))}
+        </div>
+        
+        {/* <div className="relative z-10 text-center">
+          <p className="text-slate-500 text-[10px] uppercase font-black tracking-[0.4em] mb-2">Data Encrypted</p>
+          <h3 className="text-white/20 text-lg font-bold">Awaiting Wallet Authentication</h3>
+        </div> */}
+      </div>
+    );
+  }
 
-export default function AssetTable({ assets }) {
   if (!assets || assets.length === 0) return null;
 
   return (
-    <table className="w-full border-collapse">
-      <thead className="bg-white/[0.03] text-gray-500 text-[10px] uppercase tracking-[0.2em] border-b border-white/10">
-        <tr>
-          <th className="p-5 text-left font-bold">Asset</th>
-          <th className="p-5 text-right font-bold">Holdings</th>
-          <th className="p-5 text-right font-bold">Price</th>
-          <th className="p-5 text-right font-bold">Total Value</th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-white/5">
-        {assets.map((a, i) => (
-          <tr key={i} className="hover:bg-white/[0.02] transition-colors group">
-            <td className="p-5">
-              <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 shrink-0 rounded-full ${getAvatarColor(a.symbol)} flex items-center justify-center border border-white/10 shadow-lg`}>
-                  <span className="text-white text-xs font-black italic">{a.symbol?.slice(0, 2).toUpperCase()}</span>
-                </div>
-                <div className="min-w-0">
-                  <p className="text-white font-bold text-sm truncate">{a.symbol}</p>
-                  <p className="text-gray-500 text-[10px] font-medium uppercase truncate">{a.name}</p>
-                </div>
-              </div>
-            </td>
-            <td className="p-5 text-right">
-              <p className="text-gray-200 font-semibold text-sm">{a.balance}</p>
-              <p className="text-gray-600 text-[10px] font-bold uppercase">{a.symbol}</p>
-            </td>
-            <td className="p-5 text-right text-gray-400 font-medium text-sm">
-              ${(a.price || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
-            </td>
-            <td className="p-5 text-right">
-              <p className="text-white font-black text-base">
-                ${(a.totalValue || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
-              </p>
-            </td>
+    /* Wrap in overflow-x-auto to make it look nice/scrollable on mobile */
+    <div className="w-full overflow-x-auto scrollbar-hide">
+      <table className="w-full border-collapse bg-transparent min-w-[600px]">
+        <thead className="text-slate-500 text-[10px] uppercase tracking-[0.3em] border-b border-white/5">
+          <tr>
+            <th className="p-6 text-left font-black">Asset</th>
+            <th className="p-6 text-right font-black">Holdings</th>
+            <th className="p-6 text-right font-black">Price</th>
+            <th className="p-6 text-right font-black">Total Value</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody className="divide-y divide-white/5">
+          {assets.map((a, i) => (
+            <tr 
+              key={`${a.symbol}-${i}`} 
+              className="group hover:bg-cyan-500/[0.03] transition-colors duration-300"
+            >
+              <td className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden group-hover:border-cyan-500/40 transition-all">
+                    {a.logo ? (
+                      <img 
+                        src={a.logo} 
+                        alt={a.symbol} 
+                        className="w-full h-full object-cover p-1.5"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.parentElement.innerHTML = `<span class="text-cyan-400 font-black text-xs">${a.symbol?.charAt(0)}</span>`;
+                        }}
+                      />
+                    ) : (
+                      <span className="text-cyan-400 font-black text-xs">{a.symbol?.charAt(0)}</span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-white font-bold text-sm tracking-tight">{a.symbol}</p>
+                    <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest truncate">{a.name}</p>
+                  </div>
+                </div>
+              </td>
+
+              <td className="p-6 text-right">
+                <p className="text-slate-200 font-mono font-bold text-sm">{a.balance}</p>
+                <p className="text-slate-600 text-[9px] font-black uppercase tracking-widest">{a.symbol}</p>
+              </td>
+
+              <td className="p-6 text-right">
+                <p className="text-slate-400 font-mono text-sm">
+                  ${(a.currentPrice || a.price || 0).toLocaleString(undefined, { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 6 
+                  })}
+                </p>
+              </td>
+
+              <td className="p-6 text-right">
+                <div className="flex flex-col items-end">
+                  <p className="text-cyan-400 font-mono font-black text-base leading-none mb-1">
+                    ${(a.totalValue || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                  </p>
+                  <div className="h-[1px] w-0 bg-cyan-400 group-hover:w-full transition-all duration-500 opacity-30" />
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

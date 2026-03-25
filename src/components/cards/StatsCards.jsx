@@ -1,59 +1,55 @@
 import React from 'react';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp, TrendingDown, Layers, BarChart3 } from 'lucide-react';
 
 export default function StatsCards({ totalAssets, change, loading, isConnected }) {
-  // Loading skeleton state
+  
+  // 1. Loading State (Matches the rounded shelf look)
   if (loading) {
     return (
-      <div className="grid grid-cols-2 gap-4 h-full">
-        {[1, 2].map((i) => (
-          <div key={i} className="bg-[#0f172a] p-6 rounded-[1.5rem] border border-white/10 animate-pulse">
-            <div className="h-2 w-12 bg-white/5 rounded mb-3 mx-auto" />
-            <div className="h-6 w-16 bg-white/5 rounded mx-auto" />
-          </div>
-        ))}
+      <div className="bg-[#0B0E14]/40 border border-white/5 rounded-[2.5rem] h-full w-full animate-pulse flex items-center justify-center p-8">
+        <div className="h-8 w-1/2 bg-white/5 rounded-full" />
       </div>
     );
   }
 
-  // Not connected state
-  if (!isConnected) {
-    return (
-      <div className="grid grid-cols-2 gap-4 h-full">
-        <div className="bg-[#0f172a] p-6 rounded-[1.5rem] border border-white/5 opacity-50 flex flex-col items-center justify-center">
-          <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Assets</p>
-          <p className="text-gray-600 text-xl font-bold mt-1">—</p>
-        </div>
-        <div className="bg-[#0f172a] p-6 rounded-[1.5rem] border border-white/5 opacity-50 flex flex-col items-center justify-center">
-          <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Change</p>
-          <p className="text-gray-600 text-xl font-bold mt-1">—</p>
-        </div>
-      </div>
-    );
-  }
+
 
   const isPositive = (change || 0) >= 0;
 
   return (
-    <div className="grid grid-cols-2 gap-4 h-full">
-      {/* Total Assets Count */}
-      <div className="bg-[#0f172a] p-6 rounded-[2rem] border border-white/10 flex flex-col items-center justify-center shadow-xl hover:border-white/20 transition-colors">
-        <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">Assets</p>
-        <p className="text-white text-3xl font-black mt-2 tracking-tighter italic">
+    <div className=" backdrop-blur-xl mt-13  p-4 flex items-center  shadow-2xl transition-all hover:border-cyan-500/30">
+      
+
+      {/* STAT 1: Asset Count */}
+      <div className="flex-1 flex flex-col items-center justify-center relative z-10">
+        <div className="flex items-center gap-2 mb-2">
+          <Layers size={12} className="text-cyan-500" />
+          <p className="text-slate-500 text-[10px] font-black  tracking-[0.2em]">Total Assets</p>
+        </div>
+        <p className="text-white text-2xl font-black tracking-tighter  font-mono">
           {totalAssets || 0}
         </p>
       </div>
 
-      {/* 24h Portfolio Change */}
-      <div className="bg-[#0f172a] p-6 rounded-[2rem] border border-white/10 flex flex-col items-center justify-center shadow-xl hover:border-white/20 transition-colors">
-        <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em]">24h Performance</p>
-        <div className={`flex items-center gap-1 mt-2 ${isPositive ? "text-green-400" : "text-red-400"}`}>
+      {/* THE DEMARCATION LINE */}
+      <div className="h-14 w-[1px] bg-gradient-to-b from-transparent via-cyan-700 to-transparent " />
+
+      {/* STAT 2: Performance */}
+      <div className="flex-1 flex flex-col items-center justify-center relative z-10">
+        <div className="flex items-center gap-2 mb-2">
+          <BarChart3 size={12} className="text-cyan-500" />
+          <p className="text-slate-500 text-[10px] font-black tracking-[0.2em]">Flow</p>
+        </div>
+        <div className={`flex items-center gap-1 ${isPositive ? "text-emerald-400" : "text-rose-400"}`}>
           {isPositive ? <TrendingUp size={20} strokeWidth={3} /> : <TrendingDown size={20} strokeWidth={3} />}
-          <p className="text-2xl font-black tracking-tighter italic">
-            {Math.abs(change || 0).toFixed(2)}%
+          <p className="text-2xl font-black tracking-tighter  font-mono">
+            {Math.abs(change || 0).toFixed(2)}<span className="text-sm ml-0.5">%</span>
           </p>
         </div>
       </div>
+
+      {/* Subtle bottom scan-line to match PortfolioCard */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
     </div>
   );
 }
