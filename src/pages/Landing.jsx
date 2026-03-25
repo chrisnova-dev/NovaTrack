@@ -216,14 +216,14 @@ export default function Landing() {
           <div className="mt-14 w-full max-w-5xl mx-auto overflow-hidden mask-fade flex flex-col gap-6">
             <div className="animate-scroll-left flex gap-3 shrink-0">
               {[
-                { name: "Ethereum", logo: "public/ethereum-eth-logo.svg" },
-                { name: "BNB Chain", logo: "public/bnb-bnb-logo.svg" },
-                { name: "Polygon", logo: "public/polygon-matic-logo.svg" },
-                { name: "Arbitrum", logo: "public/arbitrum-arb-logo.svg" },
-                { name: "Ethereum", logo: "public/ethereum-eth-logo.svg" },
-                { name: "BNB Chain", logo: "public/bnb-bnb-logo.svg" },
-                { name: "Polygon", logo: "public/polygon-matic-logo.svg" },
-                { name: "Arbitrum", logo: "public/arbitrum-arb-logo.svg" },
+                { name: "Ethereum", logo: "/ethereum-eth-logo.svg" },
+                { name: "BNB Chain", logo: "/bnb-bnb-logo.svg" },
+                { name: "Polygon", logo: "/polygon-matic-logo.svg" },
+                { name: "Arbitrum", logo: "/arbitrum-arb-logo.svg" },
+                { name: "Ethereum", logo: "/ethereum-eth-logo.svg" },
+                { name: "BNB Chain", logo: "/bnb-bnb-logo.svg" },
+                { name: "Polygon", logo: "/polygon-matic-logo.svg" },
+                { name: "Arbitrum", logo: "/arbitrum-arb-logo.svg" },
               ].map((chain, i) => (
                 <div
                   key={`row1-${i}`}
@@ -242,14 +242,14 @@ export default function Landing() {
             </div>
             <div className="animate-scroll-right flex gap-3 shrink-0">
               {[
-                { name: "Optimism", logo: "public/optimism-ethereum-op-logo.svg" },
-                { name: "Base", logo: "public/based-brett-brett-logo.svg" },
-                { name: "Avalanche", logo: "public/avalanche-avax-logo.svg" },
-                { name: "Fantom", logo: "public/fantom-ftm-logo.svg" },
-                { name: "Optimism", logo: "public/optimism-ethereum-op-logo.svg" },
-                { name: "Base", logo: "public/based-brett-brett-logo.svg" },
-                { name: "Avalanche", logo: "public/avalanche-avax-logo.svg" },
-                { name: "Fantom", logo: "public/fantom-ftm-logo.svg" },
+                { name: "Optimism", logo: "/optimism-ethereum-op-logo.svg" },
+                { name: "Base", logo: "/based-brett-brett-logo.svg" },
+                { name: "Avalanche", logo: "/avalanche-avax-logo.svg" },
+                { name: "Fantom", logo: "/fantom-ftm-logo.svg" },
+                { name: "Optimism", logo: "/optimism-ethereum-op-logo.svg" },
+                { name: "Base", logo: "/based-brett-brett-logo.svg" },
+                { name: "Avalanche", logo: "/avalanche-avax-logo.svg" },
+                { name: "Fantom", logo: "/fantom-ftm-logo.svg" },
               ].map((chain, i) => (
                 <div
                   key={`row2-${i}`}
