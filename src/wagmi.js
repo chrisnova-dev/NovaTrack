@@ -4,7 +4,7 @@ import { http } from 'wagmi';
 
 const ALCHEMY_KEY = import.meta.env.VITE_ALCHEMY_API_KEY;
 
-// ✅ Custom Monad chain (clean + safe)
+// Custom Monad chain
 const monadTestnet = {
   id: 10143,
   name: 'Monad Testnet',
@@ -15,18 +15,18 @@ const monadTestnet = {
   },
 };
 
-// ✅ Centralized chain RPC config (VERY IMPORTANT for scaling)
+// Centralized chain RPC config
 export const RPC_URLS = {
   [mainnet.id]: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
   [polygon.id]: `https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
   [arbitrum.id]: `https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
   [optimism.id]: `https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
   [base.id]: `https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}`,
-  [bsc.id]: 'https://bsc-dataseed.binance.org', // ✅ fixed
+  [bsc.id]: 'https://bsc-dataseed.binance.org', //
   [monadTestnet.id]: 'https://testnet-rpc.monad.xyz',
 };
 
-// ✅ Wagmi + RainbowKit config
+//  Wagmi + RainbowKit config
 export const config = getDefaultConfig({
   appName: 'NovaTrack',
   projectId: import.meta.env.VITE_WC_PROJECT_ID,

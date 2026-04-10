@@ -17,7 +17,6 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      // Logic: If the click is NOT on the menu AND NOT on the toggle button, close it.
       if (
         menuRef.current && 
         !menuRef.current.contains(event.target) && 
@@ -71,7 +70,7 @@ export default function Navbar() {
           </div>
 
           <button
-            data-menu-button // Tag identifying this as the toggle button
+            data-menu-button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden relative z-[130] p-2 text-white transition-colors bg-white/5 rounded-full border border-white/10"
           >

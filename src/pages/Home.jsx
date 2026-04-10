@@ -38,7 +38,7 @@ export default function Home() {
   }, [assets, searchTerm]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen px-5">
       <div className="">
         {/* Header section */}
         <div className="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -101,8 +101,7 @@ export default function Home() {
         {/* Flex container to push "Assets" left and Search right */}
         <div className="flex items-center justify-between mb-6">
            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
-        Assets List
+             Assets List
       </p>
 
           {/* Search Input */}

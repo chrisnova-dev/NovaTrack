@@ -6,7 +6,6 @@ export default function MainLayout() {
   return (
     <div className="relative min-h-screen w-full bg-[#0B0E14] text-slate-200 selection:bg-cyan-500/30">
       
-      {/* 1. THE DECORATIVE LAYERS */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-5%] right-[-10%] w-[600px] h-[600px] bg-cyan-500/10 blur-[130px] rounded-full" />
         <div 
@@ -19,12 +18,10 @@ export default function MainLayout() {
         />
       </div>
 
-      {/* --- MOVED NAVBAR --- */}
       <Navbar />
 
-      {/* 2. THE CONTENT LAYER */}
       <div className="relative z-10 flex flex-col min-h-screen">
-        {/* Navbar was here before - I removed it from here */}
+
         
         <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
           <Outlet />

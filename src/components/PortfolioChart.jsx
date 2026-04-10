@@ -17,7 +17,7 @@ const PortfolioChart = () => {
   return (
     <div className=" backdrop-blur-xl p-6 md:p-8 shadow-2xl transition-all duration-500 hover:border-cyan-500/30">
       <div className="flex items-center gap-2 mb-6">
-        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+
         <h3 className="text-slate-400 font-black uppercase tracking-[0.2em] text-[10px]">
           Portfolio Performance
         </h3>

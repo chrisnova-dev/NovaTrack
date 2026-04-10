@@ -23,7 +23,6 @@ export default function AssetTable({ assets, isConnected }) {
   if (!assets || assets.length === 0) return null;
 
   return (
-    /* Wrap in overflow-x-auto to make it look nice/scrollable on mobile */
     <div className="w-full overflow-x-auto scrollbar-hide">
       <table className="w-full border-collapse bg-transparent min-w-[600px]">
         <thead className="text-slate-500 text-[10px] uppercase tracking-[0.3em] border-b border-white/5">

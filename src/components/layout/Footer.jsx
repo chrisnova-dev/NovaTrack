@@ -6,7 +6,6 @@ const Footer = () => {
     <footer className="w-full py-12 border-t border-slate-800/40 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
         
-        {/* Brand & Copyright */}
         <div className="flex flex-col items-center md:items-start gap-2">
           <h3 className="text-xl font-black tracking-tighter text-white">
             Nova<span className="text-cyan-400">Track</span>
@@ -23,7 +22,7 @@ const Footer = () => {
           <button className="hover:text-white transition-colors">Support</button>
         </div>
 
-        {/* Social Icons - Subtle Cyan Glow on Hover */}
+  
         <div className="flex gap-5">
           {[
             { Icon: Twitter, link: "*" },

@@ -7,8 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // This is the "Lightweight" way to fix the Buffer/Process/Global error
-  // without using the plugin that is crashing on your Windows paths
+
   define: {
     global: 'globalThis',
     'process.env': {},
@@ -27,8 +26,7 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    // This tells Vite not to try and "re-bundle" these specific libraries
-    // which often stops that 'Unexpected end of JSON' error
+
     exclude: ['@esbuild-plugins/node-globals-polyfill'] 
   }
 });
