@@ -12,7 +12,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Dashboard", path: "/home" },
     { name: "Market", path: "/market" },
-    { name: "About", path: "/about" },
+    { name: "Track", path: "/track" },
   ];
 
   useEffect(() => {

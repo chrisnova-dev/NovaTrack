@@ -5,7 +5,8 @@ import Home from "../pages/Home";
 import MainLayout from "../components/layout/MainLayout";
 import BlockchainBackground from "../components/Backround"; 
 import ComingSoon from "../pages/ComingSoon";
-import Footer from "../components/layout/Footer"; 
+import Footer from "../components/layout/Footer";
+import TrackerDashboard from "../pages/Tracks";
 
 export default function AppRoutes() {
   return (
@@ -26,10 +27,10 @@ export default function AppRoutes() {
               
               {/* Simple redirection for unfinished pages */}
               <Route path="/market" element={<ComingSoon />} />
-              <Route path="/about" element={<ComingSoon />} />
+              <Route path="/track" element={<TrackerDashboard />} />
               
               {/* This catches any link that doesn't exist */}
-              <Route path="*" element={<ComingSoon />} />
+              {/* <Route path="*" element={<ComingSoon />} /> */}
             </Route>
           </Routes>
         </div>

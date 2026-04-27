@@ -1,4 +1,3 @@
-// File: Web3Provider.jsx
 import React from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -13,7 +12,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 const projectId = import.meta.env.VITE_WC_PROJECT_ID;
 const alchemyKey = import.meta.env.VITE_ALCHEMY_API_KEY;
 
-// ✅ Custom chain: Monad Testnet
+//  Custom chain: Monad Testnet
 const monadTestnet = {
   id: 10143,
   name: "Monad Testnet",
@@ -24,7 +23,7 @@ const monadTestnet = {
   },
 };
 
-// ✅ Centralized RPCs for multi-chain scalability
+//  Centralized RPCs for multi-chain scalability
 export const RPC_URLS = {
   [mainnet.id]: `https://eth-mainnet.g.alchemy.com/v2/${alchemyKey}`,
   [polygon.id]: `https://polygon-mainnet.g.alchemy.com/v2/${alchemyKey}`,
@@ -35,7 +34,7 @@ export const RPC_URLS = {
   [monadTestnet.id]: "https://testnet-rpc.monad.xyz",
 };
 
-// ✅ Wagmi + RainbowKit Config
+//  Wagmi + RainbowKit Config
 const config = getDefaultConfig({
   appName: "NovaTrack",
   projectId,

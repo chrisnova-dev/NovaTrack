@@ -12,14 +12,14 @@ export const getPortfolioData = async (walletAddress, chain = 'ethereum') => {
   if (!walletAddress) return [];
 
   try {
-    // 1️⃣ Fetch native balance
+    // Fetch native balance
     const nativeBalanceRaw = await alchemy.core.getBalance(walletAddress, { network: Network[chain.toUpperCase()] });
     const nativeBalance = parseFloat(nativeBalanceRaw.toString() / 1e18).toFixed(4);
 
-    // 2️⃣ Fetch all token balances
+    // Fetch all token balances
     const balances = await alchemy.core.getTokenBalances(walletAddress, { network: Network[chain.toUpperCase()] });
 
-    // 3️⃣ Fetch token metadata in parallel
+    // Fetch token metadata in parallel
     const tokenPromises = balances.tokenBalances.map(async (token) => {
       const metadata = await alchemy.core.getTokenMetadata(token.contractAddress, { network: Network[chain.toUpperCase()] });
 

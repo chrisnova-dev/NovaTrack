@@ -3,7 +3,7 @@ import { useAccount } from "wagmi";
 import { useUniversalPortfolio } from "../hooks/useUniversalPortfolio";
 import { RefreshCw, Search } from "lucide-react";
 
-// Cards & Assets
+// Cards and Assets
 import PortfolioCard from "../components/cards/PortfolioCard";
 import WalletBalanceCard from "../components/cards/WalletBalanceCard";
 import TopAssetCard from "../components/cards/TopAssetCard";
@@ -25,10 +25,10 @@ export default function Home() {
     totalAssets,
     portfolioChange24h,
     chartData,
-    refresh, // Ensure your hook exports a refresh function
+    refresh, 
   } = useUniversalPortfolio();
 
-  // Filter assets based on search input
+
   const filteredAssets = useMemo(() => {
     return assets.filter(
       (a) =>
@@ -52,7 +52,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* This button will now stay on the right even on mobile */}
+    
             {isConnected && (
               <button
                 onClick={() => refresh?.()}
@@ -98,7 +98,7 @@ export default function Home() {
         <PortfolioChart />
       </div>
       <div className="mt-12">
-        {/* Flex container to push "Assets" left and Search right */}
+  
         <div className="flex items-center justify-between mb-6">
            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
              Assets List
